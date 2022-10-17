@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './assets/css/App.css';
-import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import AuthLayout from './layouts/auth';
 import AdminLayout from './layouts/admin';
 import RTLLayout from './layouts/rtl';
@@ -12,12 +12,12 @@ ReactDOM.render(
 	<ChakraProvider theme={theme}>
 		<React.StrictMode>
 			<HashRouter>
-				<Switch>
-					<Route path={`/auth`} component={AuthLayout} />
-					<Route path={`/admin`} component={AdminLayout} />
-					<Route path={`/rtl`} component={RTLLayout} />
-					<Redirect from='/' to='/admin' />
-				</Switch>
+				<Routes>
+					<Route path={`/`} element={<AdminLayout/>} />
+					<Route path={`/auth`} element={<AuthLayout/>} />
+					<Route path={`/admin`} element={<AdminLayout/>} />
+					<Route path={`/rtl`} element={<RTLLayout/>} />
+				</Routes>
 			</HashRouter>
 		</React.StrictMode>
 	</ChakraProvider>,

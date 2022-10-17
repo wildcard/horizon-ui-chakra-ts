@@ -7,7 +7,7 @@ import Sidebar from 'components/sidebar/Sidebar';
 import { RtlProvider } from 'components/rtlProvider/RtlProvider';
 import { SidebarContext } from 'contexts/SidebarContext';
 import { useState } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import routes from 'routes';
 
 // Custom Chakra theme
@@ -50,7 +50,8 @@ export default function Dashboard(props: { [x: string]: any }) {
 	const getRoutes = (routes: RoutesType[]): any => {
 		return routes.map((route: RoutesType, key: any) => {
 			if (route.layout === '/rtl') {
-				return <Route path={route.layout + route.path} component={route.component} key={key} />;
+				const RouteComponent = route.component;
+				return <Route path={route.layout + route.path} element={<RouteComponent/>} key={key} />;
 			} else {
 				return null;
 			}
@@ -93,14 +94,14 @@ export default function Dashboard(props: { [x: string]: any }) {
 						</Box>
 					</Portal>
 
-					{getRoute() ? (
+					{/* {getRoute() ? (
 						<Box mx='auto' p={{ base: '20px', md: '30px' }} pe='20px' minH='100vh' pt='50px'>
 							<Switch>
 								{getRoutes(routes)}
 								<Redirect from='/' to='/rtl/rtl-default' />
 							</Switch>
 						</Box>
-					) : null}
+					) : null} */}
 					<Box>
 						<Footer />
 					</Box>
